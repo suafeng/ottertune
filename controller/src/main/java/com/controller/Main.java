@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.MalformedParametersException;
 import java.util.HashMap;
 
 /**
@@ -22,10 +23,10 @@ public class Main {
     public static void main(String[] args) {
         // Parse command line argument
         if(args.length % 2 != 0) {
-            System.out.println("Command line argument mal formed");
-            return;
+            throw new MalformedParametersException("Command line argument is malformed");
         }
         int time = DEFAULT_TIME; // set time to default
+        String configFileName = "input_config.json"; //default config file name
         for(int i = 0; i < args.length; i += 2){
             String flag = args[i];
             String val = args[++i];
@@ -37,17 +38,19 @@ public class Main {
                         time = DEFAULT_TIME;
                     }
                     break;
-                default:
-                    System.out.println("Invalid flag: " + flag);
+                case "-f" :
+                    configFileName = val;
                     break;
+                default:
+                    throw new MalformedParametersException("invalid flag");
             }
         }
 
         // Parse input config file
-        String configFileName = "input_config.json";
         HashMap<String, String> input = ConfigFileParser.getInputFromConfigFile(configFileName);
         // db type
         String dbtype = input.get("database_type");
+        System.out.println(dbtype);
         DBCollector collector = null;
         // parameters for creating a collector.
         String username = input.get("username");
@@ -67,8 +70,7 @@ public class Main {
                 collector = new MySQLCollector(dbURL, username, password);
                 break;
             default:
-                System.out.println("Please specify database type!");
-                return;
+                throw new MalformedParametersException("invalid database type");
         }
         String outputDir = dbtype;
         new File("output/" + outputDir).mkdir();

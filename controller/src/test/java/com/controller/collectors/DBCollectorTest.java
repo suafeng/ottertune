@@ -22,8 +22,5 @@ public class DBCollectorTest {
         }else{
             System.out.println("NOT valid!");
         }
-
     }
-
-
 }
