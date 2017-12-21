@@ -1,6 +1,7 @@
 # Under Construction
 
 [![Build Status](https://travis-ci.org/cmu-db/ottertune.svg?branch=master)](https://travis-ci.org/cmu-db/ottertune)
+[![codecov.io](https://codecov.io/github/cmu-db/ottertune/coverage.svg?branch=master)](https://codecov.io/github/cmu-db/ottertune)
 
 OtterTune is currently under construction. Check back soon!
 
@@ -12,7 +13,4 @@ For more information, see our [paper](http://db.cs.cmu.edu/papers/2017/p1009-van
 
 ### Contributors
 
-* [Dana Van Aken](http://www.cs.cmu.edu/~dvanaken/)
-* [Andy Pavlo](http://www.cs.cmu.edu/~pavlo/)
-* [Geoff Gordon](http://www.cs.cmu.edu/~ggordon/)
-* [Bohan Zhang](https://bohanjason.github.io/bohan/)
+See the [people page](https://github.com/cmu-db/ottertune/graphs/contributors) for the full list of contributors.

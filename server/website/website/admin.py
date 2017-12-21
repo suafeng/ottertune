@@ -1,9 +1,10 @@
 from django.contrib import admin
 from djcelery.models import TaskMeta
 
-from .models import (Application, BackupData, DBConf, DBMSCatalog,
-                     DBMSMetrics, KnobCatalog, MetricCatalog, PipelineResult,
-                     Project, Result, Workload)
+from .models import (BackupData, DBMSCatalog, KnobCatalog,
+                     KnobData, MetricCatalog, MetricData,
+                     PipelineData, PipelineRun, Project,
+                     Result, Session, Workload)
 
 
 class DBMSCatalogAdmin(admin.ModelAdmin):
@@ -36,7 +37,7 @@ class ProjectAdmin(admin.ModelAdmin):
     fields = ['name', 'user', 'last_update', 'creation_time']
 
 
-class ApplicationAdmin(admin.ModelAdmin):
+class SessionAdmin(admin.ModelAdmin):
     fields = ['name', 'user', 'description',
               'creation_time', 'last_update', 'upload_code',
               'nondefault_settings']
@@ -44,19 +45,19 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display_links = ('name',)
 
 
-class DBConfAdmin(admin.ModelAdmin):
+class KnobDataAdmin(admin.ModelAdmin):
     list_display = ['name', 'dbms_info', 'creation_time']
-    fields = ['application', 'name', 'creation_time',
-              'configuration', 'data', 'dbms']
+    fields = ['session', 'name', 'creation_time',
+              'knobs', 'data', 'dbms']
 
     def dbms_info(self, obj):
         return obj.dbms.full_name
 
 
-class DBMSMetricsAdmin(admin.ModelAdmin):
+class MetricDataAdmin(admin.ModelAdmin):
     list_display = ['name', 'dbms_info', 'creation_time']
-    fields = ['application', 'name', 'creation_time',
-              'configuration', 'data', 'dbms']
+    fields = ['session', 'name', 'creation_time',
+              'metrics', 'data', 'dbms']
 
     def dbms_info(self, obj):
         return obj.dbms.full_name
@@ -89,6 +90,19 @@ class BackupDataAdmin(admin.ModelAdmin):
         return obj.id
 
 
+class PipelineDataAdmin(admin.ModelAdmin):
+    list_display = ['id', 'version', 'task_type', 'workload',
+                    'creation_time']
+    ordering = ['-creation_time']
+
+    def version(self, obj):
+        return obj.pipeline_run.id
+
+
+class PipelineRunAdmin(admin.ModelAdmin):
+    list_display = ['id', 'start_time', 'end_time']
+
+
 class PipelineResultAdmin(admin.ModelAdmin):
     list_display = ['task_type', 'dbms_info',
                     'hardware_info', 'creation_timestamp']
@@ -101,21 +115,22 @@ class PipelineResultAdmin(admin.ModelAdmin):
 
 
 class WorkloadAdmin(admin.ModelAdmin):
-    list_display = ['cluster_id', 'name']
+    list_display = ['workload_id', 'name']
 
-    def cluster_id(self, obj):
+    def workload_id(self, obj):
         return obj.pk
 
 
 admin.site.register(DBMSCatalog, DBMSCatalogAdmin)
 admin.site.register(KnobCatalog, KnobCatalogAdmin)
 admin.site.register(MetricCatalog, MetricCatalogAdmin)
-admin.site.register(Application, ApplicationAdmin)
+admin.site.register(Session, SessionAdmin)
 admin.site.register(Project, ProjectAdmin)
-admin.site.register(DBConf, DBConfAdmin)
-admin.site.register(DBMSMetrics, DBMSMetricsAdmin)
+admin.site.register(KnobData, KnobDataAdmin)
+admin.site.register(MetricData, MetricDataAdmin)
 admin.site.register(TaskMeta, TaskMetaAdmin)
 admin.site.register(Result, ResultAdmin)
 admin.site.register(BackupData, BackupDataAdmin)
-admin.site.register(PipelineResult, PipelineResultAdmin)
+admin.site.register(PipelineData, PipelineDataAdmin)
+admin.site.register(PipelineRun, PipelineRunAdmin)
 admin.site.register(Workload, WorkloadAdmin)
