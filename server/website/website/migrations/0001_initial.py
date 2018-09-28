@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             name='DBMSCatalog',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.IntegerField(choices=[(1, b'MySQL'), (2, b'Postgres'), (3, b'Db2'), (4, b'Oracle'), (5, b'SQL Server'), (6, b'SQLite'), (7, b'HStore'), (8, b'Vector'), (9, b'MyRocks')])),
+                ('type', models.IntegerField(choices=[(1, b'MySQL'), (2, b'Postgres'), (3, b'Db2'), (4, b'Oracle'), (5, b'SQL Server'), (6, b'SQLite'), (7, b'HStore'), (8, b'Vector'), (9, b'MyRocks'), (10, 'SAP HANA')])),
                 ('version', models.CharField(max_length=16)),
             ],
             options={

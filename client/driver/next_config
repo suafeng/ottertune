@@ -1,0 +1,1 @@
+{"recommendation": {"default_statement_concurrency_limit": 0, "log_backup_timeout_s": 3208, "max_concurrency": 0, "max_sql_executors": 0, "num_cores": 21, "savepoint_interval_s": 6998, "sql_executors": 0, "statement_memory_limit": 2}, "status": "good", "info": "INFO: training data size is 89"}

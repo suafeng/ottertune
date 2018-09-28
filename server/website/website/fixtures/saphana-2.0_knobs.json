@@ -1,0 +1,173 @@
+[
+    {
+        "fields": {
+            "category": "",
+            "maxval": "32",
+            "dbms": 10,
+            "name": "global.sql_executors",
+            "minval": "0",
+            "default": "0",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "The parameter sql_executors defines the number of requests that can be processed by the system. This is the target number of threads in the SqlExecutors thread pool, and it means the number of threads that are immediately available to accept incoming requests. Additional threads will be created if needed and deleted if not needed any more. As each thread allocates a particular amount of main memory for the stack, reducing the value of this parameter can help to reduce memory footprint."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "32",
+            "dbms": 10,
+            "name": "global.max_sql_executors",
+            "minval": "0",
+            "default": "0",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "The maximum number of threads that can be used. Not set by default so that new threads are created to handle incoming requests."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "32",
+            "dbms": 10,
+            "name": "global.max_concurrency",
+            "minval": "0",
+            "default": "0",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "This parameter sets the size of the thread pool used by the JobExecutor used to parallelize execution of database operations. Additional threads will be created if needed and deleted if not needed any more. You can use this to limit resources available for JobExecutor threads thereby saving capacity for SqlExecutors."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "32",
+            "dbms": 10,
+            "name": "global.num_cores",
+            "minval": "0",
+            "default": "0",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "The number of threads (logical cores) available for execution."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "32",
+            "dbms": 10,
+            "name": "global.default_statement_concurrency_limit",
+            "minval": "0",
+            "default": "0",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "If this parameter is used to tune throughput, and max_concurrency_hint and num_cores are also set explicitly, then we recommend that num_cores and max_concurrency_hint should be smaller or equal to the value for default_statement_concurrency_limit."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "4",
+            "dbms": 10,
+            "name": "global.statement_memory_limit",
+            "minval": "0",
+            "default": "0",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "defines the maximum memory allocation per statement in GB"
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "3600",
+            "dbms": 10,
+            "name": "global.log_backup_timeout_s",
+            "minval": "900",
+            "default": "900",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "Sets log backup timeout in seconds (0 = disabled)."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "7200",
+            "dbms": 10,
+            "name": "global.savepoint_interval_s",
+            "minval": "300",
+            "default": "300",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "Sets the savepoint interval in seconds. The savepoint interval controls the frequency at which savepoint operations are performed."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "4294967296",
+            "dbms": 10,
+            "name": "global.plan_cache_size",
+            "minval": "2147483648",
+            "default": "2147483648",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 1,
+            "description": "Sets the maximum size of the plan cache in bytes."
+        },
+        "model": "website.KnobCatalog"
+    }
+]

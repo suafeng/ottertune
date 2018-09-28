@@ -1,0 +1,970 @@
+[
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.started_jobs_postcommit",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.processed_jobs",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.volume_id",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.first_waiting_tid",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.enters",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.processed_jobs_postcommit",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.first_waiting_tid_postcommit",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.enters_postcommit",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.last_started_tid_postcommit",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.max_history_size_at_svp",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.min_read_tid",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.queue_loads",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.last_started_tid",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.host",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.savepoints",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.min_history_size_at_svp",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.waiter_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.sum_history_size_at_svp",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.history_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.started_jobs",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.store_type",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.last_history_size_at_svp",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.empty_history_at_svp_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.queue_empty_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.port",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.queue_loads_nonempty",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_garbage_collection_statistics.avg_history_size_at_svp",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_update_transaction_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_memory_usage_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_compilation_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.execution_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.compilation_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_compilation_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_commit_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_rollback_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.update_transaction_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.commit_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_execution_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_transaction_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_commit_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_update_transaction_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_transaction_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.port",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_memory_usage_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.current_rollback_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.rollback_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.peak_execution_rate",
+            "scope": "table",
+            "vartype": 3
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_workload.host",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.total_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.port",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.cache_id",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.invalidate_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.used_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.hit_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.miss_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.insert_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.volume_id",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.entry_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_caches.host",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.update_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.merge_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.select_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.last_modify_time",
+            "scope": "table",
+            "vartype": 6
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.schema_name",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.insert_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.replace_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.table_name",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_table_statistics.delete_count",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.instance_shared_memory_allocated_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.utc_timestamp",
+            "scope": "table",
+            "vartype": 6
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.instance_code_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.instance_total_memory_used_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.instance_total_memory_peak_used_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.allocation_limit",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.sys_timestamp",
+            "scope": "table",
+            "vartype": 6
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.used_swap_space",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.host",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.free_physical_memory",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.total_cpu_idle_time",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.total_cpu_system_time",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.total_cpu_user_time",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.free_swap_space",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.total_cpu_wio_time",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.used_physical_memory",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 3,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_host_resource_utilization.instance_total_memory_allocated_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_disk_usage.usage_type",
+            "scope": "table",
+            "vartype": 1
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 1,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_disk_usage.used_size",
+            "scope": "table",
+            "vartype": 2
+        }
+    },
+    {
+        "model": "website.MetricCatalog",
+        "fields": {
+            "metric_type": 2,
+            "summary": "",
+            "dbms": 10,
+            "name": "m_disk_usage.host",
+            "scope": "table",
+            "vartype": 1
+        }
+    }
+]

@@ -390,7 +390,10 @@ def handle_result_files(session, files):
     # Load the contents of the controller's summary file
     summary = JSONUtil.loads(files['summary'])
     dbms_type = DBMSType.type(summary['database_type'])
-    dbms_version = summary['database_version']  # TODO: fix parse_version_string
+    if summary['database_type'] == 'saphana':
+        dbms_version = '2.0'
+    else:
+        dbms_version = summary['database_version']  # TODO: fix parse_version_string
     workload_name = summary['workload_name']
     observation_time = summary['observation_time']
     start_time = datetime.fromtimestamp(
@@ -418,8 +421,11 @@ def handle_result_files(session, files):
     # Load, process, and store the knobs in the DBMS's configuration
     knob_dict, knob_diffs = Parser.parse_dbms_knobs(
         dbms.pk, JSONUtil.loads(files['knobs']))
+    print('knob_dict: ' + str(knob_dict))
+    print('knob_diffs: ' + str(knob_diffs))
     tunable_knob_dict = Parser.convert_dbms_knobs(
         dbms.pk, knob_dict)
+    print('tunable_knob_dict: ' + str(tunable_knob_dict))
     knob_data = KnobData.objects.create_knob_data(
         session, JSONUtil.dumps(knob_dict, pprint=True, sort=True),
         JSONUtil.dumps(tunable_knob_dict, pprint=True, sort=True), dbms)

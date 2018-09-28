@@ -55,6 +55,12 @@ def check_disk_usage():
 def restart_database():
     if CONF['database_type'] == 'postgres':
         cmd = 'sudo service postgresql restart'
+    elif CONF['database_type'] == 'saphana':
+        cmd = "sudo su - hxeadm -c './HDB stop'"
+        local(cmd)
+        cmd = "sudo su - hxeadm -c './HDB start'"
+        local(cmd)
+        return
     else:
         raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     local(cmd)
@@ -85,6 +91,12 @@ def change_conf():
     next_conf = 'next_config'
     if CONF['database_type'] == 'postgres':
         cmd = 'sudo python3 PostgresConf.py {} {}'.format(next_conf, CONF['database_conf'])
+    elif CONF['database_type'] == 'saphana':
+        cmd = 'sudo python3 HanaConf.py {} {}'.format(next_conf, CONF['database_conf'])
+        local(cmd)
+        cmd = "sudo su - hxeadm -c 'hdbnsutil -reconfig'"
+        local(cmd)
+        return
     else:
         raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     local(cmd)
@@ -116,8 +128,14 @@ def run_oltpbench_bg():
 
 @task
 def run_controller():
-    cmd = 'sudo gradle run -PappArgs="-c ' \
-          'config/sample_postgres_config.json -d output/postgres/" --no-daemon'
+    if CONF['database_type'] == 'postgres':
+        cmd = 'sudo gradle run -PappArgs="-c ' \
+              'config/sample_postgres_config.json -d output/postgres/" --no-daemon'
+    elif CONF['database_type'] == 'saphana':
+        cmd = 'sudo gradle run -PappArgs="-c ' \
+              'config/sample_saphana_config.json -d output/hana/" --no-daemon'
+    else:
+        raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     with lcd("../controller"):  # pylint: disable=not-context-manager
         local(cmd)
 
@@ -136,8 +154,12 @@ def save_dbms_result():
     files = ['knobs.json', 'metrics_after.json', 'metrics_before.json', 'summary.json']
     for f_ in files:
         f_prefix = f_.split('.')[0]
-        cmd = 'cp ../controller/output/postgres/{} {}/{}__{}.json'.\
-              format(f_, CONF['save_path'], t, f_prefix)
+        if CONF['database_type'] == 'postgres':
+            cmd = 'cp ../controller/output/postgres/{} {}/{}__{}.json'.\
+                  format(f_, CONF['save_path'], t, f_prefix)
+        elif CONF['database_type'] == 'saphana':
+            cmd = 'cp ../controller/output/hana/{} {}/{}__{}.json'.\
+                  format(f_, CONF['save_path'], t, f_prefix)
         local(cmd)
 
 
@@ -149,9 +171,15 @@ def free_cache():
 
 @task
 def upload_result():
-    cmd = 'python3 ../../server/website/script/upload/upload.py \
-           ../controller/output/postgres/ {} {}/new_result/'.format(CONF['upload_code'],
-                                                                    CONF['upload_url'])
+    if CONF['database_type'] == 'postgres':
+        cmd = 'python3 ../../server/website/script/upload/upload.py \
+               ../controller/output/postgres/ {} {}/new_result/'.format(CONF['upload_code'],
+                                                                        CONF['upload_url'])
+    elif CONF['database_type'] == 'saphana':
+        cmd = 'python3 ../../server/website/script/upload/upload.py \
+               ../controller/output/hana/ {} {}/new_result/'.format(CONF['upload_code'],
+                                                                        CONF['upload_url'])
+
     local(cmd)
 
 
@@ -173,7 +201,6 @@ def _ready_to_shut_down_controller():
     return (os.path.exists(pid_file_path) and os.path.exists(CONF['oltpbench_log']) and
             'Output into file' in open(CONF['oltpbench_log']).read())
 
-
 @task
 def loop():
     max_disk_usage = 80
@@ -185,13 +212,15 @@ def loop():
     restart_database()
 
     # check disk usage
-    if check_disk_usage() > max_disk_usage:
-        LOG.info('Exceeds max disk usage %s, reload database', max_disk_usage)
-        drop_database()
-        create_database()
-        load_oltpbench()
-        LOG.info('Reload database Done !')
+    # if check_disk_usage() > max_disk_usage:
+    #     LOG.info('Exceeds max disk usage %s, reload database', max_disk_usage)
+    #     if CONF['database_type'] == 'postgres':
+    #         drop_database()
+    #         create_database()
+    #     load_oltpbench()
+    #     LOG.info('Reload database Done !')
 
+    load_oltpbench()
     # run oltpbench as a background job
     run_oltpbench_bg()
 
@@ -205,17 +234,16 @@ def loop():
 
     # stop the experiment
     stop_controller()
-
     p.join()
 
     # upload result
     upload_result()
 
     # get result
-    get_result()
+    # get_result()
 
     # change config
-    change_conf()
+    # change_conf()
 
 
 @task

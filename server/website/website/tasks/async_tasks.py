@@ -80,6 +80,7 @@ class ConfigurationRecommendation(UpdateTask):  # pylint: disable=abstract-metho
         result_id = args[0]['newest_result_id']
         result = Result.objects.get(pk=result_id)
 
+        print("in ConfigurationRecommendation on_success, retval['recommendation']: " + str(retval['recommendation']))
         # Replace result with formatted result
         formatted_params = Parser.format_dbms_knobs(result.dbms.pk, retval['recommendation'])
         task_meta = TaskMeta.objects.get(task_id=task_id)
@@ -89,6 +90,7 @@ class ConfigurationRecommendation(UpdateTask):  # pylint: disable=abstract-metho
 
         # Create next configuration to try
         config = Parser.create_knob_configuration(result.dbms.pk, retval['recommendation'])
+        print('in ConfigurationRecommendation on_success, config: ' + str(config))
         retval['recommendation'] = config
         result.next_configuration = JSONUtil.dumps(retval)
         result.save()
@@ -168,6 +170,7 @@ def configuration_recommendation(target_data):
         target_data_res = {}
         target_data_res['status'] = 'bad'
         target_data_res['info'] = 'WARNING: no training data, the config is generated randomly'
+        print('in config_recommendation, target_data[config_recommend]: ' + str(target_data['config_recommend']))
         target_data_res['recommendation'] = target_data['config_recommend']
         return target_data_res
 
@@ -419,6 +422,7 @@ def map_workload(target_data):
     latest_pipeline_run = PipelineRun.objects.get_latest()
     if target_data['bad']:
         assert target_data is not None
+        print('in map_workload, target_data[config_recommend]')
         return target_data
     assert latest_pipeline_run is not None
 

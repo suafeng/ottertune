@@ -133,11 +133,12 @@ public class Main {
       // first collection (before queries)
       LOG.info("First collection of metrics before experiment");
       String metricsBefore = collector.collectMetrics();
+      // System.out.println(metricsBefore);
       if (!JSONSchemaType.isValidJson(JSONSchemaType.OUTPUT, metricsBefore)) {
         LOG.error("Invalid output JSON format (metrics_before)");
         return;
       }
-      PrintWriter metricsWriter = 
+      PrintWriter metricsWriter =
           new PrintWriter(FileUtil.joinPath(outputDirectory, "metrics_before.json"), "UTF-8");
       metricsWriter.println(metricsBefore);
       metricsWriter.close();
@@ -277,4 +278,3 @@ public class Main {
     return collector;
   }
 }
-

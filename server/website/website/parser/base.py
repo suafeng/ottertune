@@ -271,7 +271,11 @@ class BaseParser(object, metaclass=ABCMeta):
                 valid_metrics[name] = values[0]
             elif metric.metric_type == MetricType.COUNTER or \
                     metric.metric_type == MetricType.STATISTICS:
-                values = [int(v) for v in values if v is not None]
+                if metric.vartype == VarType.INTEGER:
+                    values = [int(v) for v in values if v is not None]
+                else:
+                    values = [float(v) for v in values if v is not None]
+
                 if len(values) == 0:
                     valid_metrics[name] = 0
                 else:
@@ -295,9 +299,13 @@ class BaseParser(object, metaclass=ABCMeta):
                 end_val = conversion_fn(end_val, met_info)
                 if met_info.metric_type == MetricType.COUNTER:
                     adj_val = end_val - start_val
+                    # move into if in case the initial value is less than 0
+                    # if adj_val < 0:
+                    #     print(met_name + ', adj_val: ' + str(adj_val) + ' met_info.metric_type: ' + str(met_info.metric_type))
+                    # assert adj_val >= 0
                 else:  # MetricType.STATISTICS or MetricType.INFO
                     adj_val = end_val
-                assert adj_val >= 0
+
                 adjusted_metrics[met_name] = adj_val
             else:
                 # This metric is either a bool, enum, string, or timestamp
@@ -312,6 +320,9 @@ class BaseParser(object, metaclass=ABCMeta):
             if knob_name.startswith('global.'):
                 knob_name_global = knob_name[knob_name.find('.') + 1:]
                 configuration[knob_name_global] = knob_value
+
+            # Should change hana's knobs to global. xxx
+            # configuration[knob_name] = knob_value
 
         configuration = OrderedDict(sorted(configuration.items()))
         return configuration
