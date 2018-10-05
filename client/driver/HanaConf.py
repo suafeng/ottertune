@@ -36,7 +36,7 @@ def main():
     indexserver_sql_knobs = {'sql_executors', 'max_sql_executors', 'plan_cache_size'}
     indexserver_execution_knobs = {'max_concurrency', 'default_statement_concurrency_limit', 'num_cores'}
     global_memorymanager_knobs = {'statement_memory_limit'}
-    global_persistence_knobs = {'log_backup_timeout_s', 'savepoint_interval_s'}
+    global_persistence_knobs = {'log_backup_timeout_s', 'savepoint_interval_s', 'log_segment_size_mb', 'log_buffer_size_kb', 'log_buffer_count'}
 
     with open(sys.argv[2] + '/indexserver.ini', "r+") as hanaconf:
         lines = hanaconf.readlines()

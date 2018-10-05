@@ -41,7 +41,11 @@ public class SAPHanaCollector extends DBCollector {
       "savepoint_interval_s",
       "num_cores",
       "max_sql_executors",
-      "plan_cache_size" 
+      "plan_cache_size",
+      // newly added
+      "log_segment_size_mb",
+      "log_buffer_size_kb",
+      "log_buffer_count" // change offline
   };
 
   private static final String[] SAP_SYS_VIEW = {

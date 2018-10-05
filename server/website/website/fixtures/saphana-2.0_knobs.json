@@ -154,10 +154,10 @@
     {
         "fields": {
             "category": "",
-            "maxval": "4294967296",
+            "maxval": "10737418240",
             "dbms": 10,
             "name": "global.plan_cache_size",
-            "minval": "2147483648",
+            "minval": "10000",
             "default": "2147483648",
             "tunable": true,
             "enumvals": "null",
@@ -165,8 +165,65 @@
             "context": "dynamic",
             "scope": "global",
             "summary": "",
-            "unit": 1,
+            "unit": 3,
             "description": "Sets the maximum size of the plan cache in bytes."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "4096",
+            "dbms": 10,
+            "name": "global.log_segment_size_mb",
+            "minval": "8",
+            "default": "1024",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "A segment is backup/recovery and restart unit. Only whole segments are considered there, thus increasing the segment size may lead to longer restart times, since even after correct shutdown, a complete log segment must be read at restart (to be optimized)."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "16384",
+            "dbms": 10,
+            "name": "global.log_buffer_size_kb",
+            "minval": "128",
+            "default": "1024",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "# Sets size of one in-memory log buffer in kilobytes. Setting higher buffer size may increase throughput at the cost of COMMIT latency. During COMMIT of a transaction, at most this much data must be flushed to the I/O subsystem (provided all preceding buffers are already flushed)."
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "",
+            "maxval": "128",
+            "dbms": 10,
+            "name": "global.log_buffer_count",
+            "minval": "4",
+            "default": "8",
+            "tunable": true,
+            "enumvals": "null",
+            "vartype": 2,
+            "context": "dynamic",
+            "scope": "global",
+            "summary": "",
+            "unit": 3,
+            "description": "Sets count of log buffers per physical partition. Increasing this parameter will allow buffering an additional peak load at the cost of possibly increasing latency of parallel short transactions. If the I/O subsystem allows highly-parallel writes, you might consider increasing this parameter to allow better throughput for large transactions."
         },
         "model": "website.KnobCatalog"
     }

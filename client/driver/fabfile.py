@@ -240,10 +240,10 @@ def loop():
     upload_result()
 
     # get result
-    # get_result()
+    get_result()
 
     # change config
-    # change_conf()
+    change_conf()
 
 
 @task
