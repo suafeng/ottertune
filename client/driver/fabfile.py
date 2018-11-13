@@ -79,12 +79,18 @@ def create_database():
         raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     local(cmd)
 
+@task
+def vacuum_analyze():
+    cmd = "PGPASSWORD=tdai1 psql -e {} -U {} -c 'vacuum analyze;'".\
+              format(CONF['database_name'], CONF['username'])
+    local(cmd)
 
 @task
 def change_conf():
     next_conf = 'next_config'
     if CONF['database_type'] == 'postgres':
-        cmd = 'sudo python3 PostgresConf.py {} {}'.format(next_conf, CONF['database_conf'])
+        # cmd = 'sudo python3 PostgresConf.py {} {}'.format(next_conf, CONF['database_conf'])
+        cmd = 'sudo python3 KernelConf.py {} {}'.format(next_conf, CONF['database_conf'])
     else:
         raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     local(cmd)
@@ -139,7 +145,9 @@ def save_dbms_result():
         cmd = 'cp ../controller/output/{} {}/{}__{}.json'.\
               format(f_, CONF['save_path'], t, f_prefix)
         local(cmd)
-
+    cmd = 'cp /etc/postgresql/10/main/postgresql.conf {}/{}__postgresql.conf'.\
+        format(CONF['save_path'], t)
+    local(cmd)
 
 @task
 def free_cache():
@@ -151,6 +159,13 @@ def free_cache():
 def upload_result():
     cmd = 'python3 ../../server/website/script/upload/upload.py \
            ../controller/output/ {} {}/new_result/'.format(CONF['upload_code'],
+                                                           CONF['upload_url'])
+    local(cmd)
+
+@task
+def upload_dbms_results():
+    cmd = 'python3 ../../server/website/script/upload/upload_dbms_results.py \
+           ../controller/upload_output/ {} {}/new_result/'.format(CONF['upload_code'],
                                                            CONF['upload_url'])
     local(cmd)
 
@@ -167,6 +182,21 @@ def add_udf():
     cmd = 'sudo python3 ./LatencyUDF.py ../controller/output/'
     local(cmd)
 
+@task
+def add_kernel_knobs():
+    cmd = 'sudo python3 ./add_kernel_knobs.py ../controller/output'
+    local(cmd)
+
+@task
+def add_oltpbench_latency():
+    cmd = 'sudo python3 ./add_oltpbench_latency.py {} {}'.format(CONF['oltpbench_home'], 
+                                                            '../controller/output')
+    local(cmd)
+
+@task
+def trim():
+    cmd = 'sudo fstrim /'
+    local(cmd)
 
 @task
 def upload_batch():
@@ -225,14 +255,26 @@ def loop():
     # add user defined target objective
     # add_udf()
 
+    # add kernel knobs and latency
+    add_kernel_knobs()
+    add_oltpbench_latency()
+
+    # save result
+    save_dbms_result()
+    
     # upload result
     upload_result()
 
     # get result
-    get_result()
+    # get_result()
 
     # change config
-    change_conf()
+    # change_conf()
+
+    # vacuum_analyze()
+
+    # trim
+    trim()
 
 
 @task
@@ -240,4 +282,6 @@ def run_loops(max_iter=1):
     for i in range(int(max_iter)):
         LOG.info('The %s-th Loop Starts / Total Loops %s', i + 1, max_iter)
         loop()
+        if i % 7 == 0 and i != 0:
+            vacuum_analyze()
         LOG.info('The %s-th Loop Ends / Total Loops %s', i + 1, max_iter)

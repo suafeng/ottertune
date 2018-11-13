@@ -33,6 +33,13 @@ def main():
             postgresqlconf.write(line)
 
         for (knob_name, knob_value) in list(conf.items()):
+            if str(knob_value) == '0B':
+                knob_value = '0'
+            if 'B' in str(knob_value) and 'k' not in str(knob_value) and 'G' not in str(knob_value):
+                if str(knob_value)[:-1] == '-1': 
+                    knob_value = '-1'
+                else: 
+                    knob_value = '0'
             postgresqlconf.write(str(knob_name) + " = " + str(knob_value) + "\n")
 
 
