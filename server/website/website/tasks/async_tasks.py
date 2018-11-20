@@ -341,7 +341,7 @@ def configuration_recommendation(target_data):
 
             # Set min value to the default value
             # FIXME: support multiple methods can be selected by users
-            # col_min = X_default_scaled[i]
+            col_min = X_default_scaled[i]
 
         X_min[i] = col_min
         X_max[i] = col_max

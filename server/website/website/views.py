@@ -392,6 +392,9 @@ def handle_result_files(session, files):
     summary = JSONUtil.loads(files['summary'])
     dbms_type = DBMSType.type(summary['database_type'])
     dbms_version = summary['database_version']  # TODO: fix parse_version_string
+    # hardcode to solve the problem of 10.6
+    if dbms_version == '10.6':
+        dbms_version = '10.5'
     workload_name = summary['workload_name']
     observation_time = summary['observation_time']
     start_time = datetime.fromtimestamp(

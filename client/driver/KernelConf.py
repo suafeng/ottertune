@@ -38,8 +38,13 @@ def main():
         for (knob_name, knob_value) in list(conf.items()):
             if 'vm.' in knob_name or 'kernel.' in knob_name:
                 if knob_name == 'vm.nr_hugepages':
+                    # continue
                     knob_value = int(nr_hugepages_100per * (int(knob_value) / 100)) + 1
+                    if knob_value < 5000:
+                        knob_value = 5000
                     sp.check_output(['sudo', 'sysctl', '-w', knob_name + '=' + str(knob_value)])
+                # if knob_name == 'vm.overcommit_ratio' and int(str(knob_value)) < 75:
+
                 print(sp.check_output(['sudo', 'sysctl', '-w', knob_name + '=' + str(knob_value)]))
             else:
                 if str(knob_value) == '0B':

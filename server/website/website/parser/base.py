@@ -129,15 +129,15 @@ class BaseParser(object, metaclass=ABCMeta):
                 conv_value = self.convert_integer(value, metadata)
                 if not self._check_knob_num_in_range(conv_value, metadata):
                     raise Exception('Knob integer num value not in range! '
-                                    'min: {}, max: {}, actual: {}'
-                                    .format(metadata.minval,
+                                    'name: {}, min: {}, max: {}, actual: {}'
+                                    .format(name, metadata.minval,
                                             metadata.maxval, str(conv_value)))
             elif metadata.vartype == VarType.REAL:
                 conv_value = self.convert_real(value, metadata)
                 if not self._check_knob_num_in_range(conv_value, metadata):
                     raise Exception('Knob real num value not in range! '
-                                    'min: {}, max: {}, actual: {}'
-                                    .format(metadata.minval,
+                                    'name: {}, min: {}, max: {}, actual: {}'
+                                    .format(name, metadata.minval,
                                             metadata.maxval, str(conv_value)))
             elif metadata.vartype == VarType.STRING:
                 conv_value = self.convert_string(value, metadata)

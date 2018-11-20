@@ -103,6 +103,10 @@ def load_oltpbench():
     with lcd(CONF['oltpbench_home']):  # pylint: disable=not-context-manager
         local(cmd)
 
+@task 
+def load_db_from_dump():
+    cmd = "gunzip -c /home/tdai1/s200_dump_tpcc.gz | PGPASSWORD=tdai1 psql tpcc -U tdai1"
+    local(cmd)
 
 @task
 def run_oltpbench():
@@ -205,6 +209,29 @@ def upload_batch():
                                                                   CONF['upload_url'])
     local(cmd)
 
+@task
+def safe_reload():
+    cmd = 'sudo cp /etc/postgresql/10/main/postgresql.conf /etc/postgresql/10/main/postgresql.conf.tmp'
+    local(cmd)
+    cmd = 'sudo cp /etc/postgresql/10/main/postgresql.conf.bak /etc/postgresql/10/main/postgresql.conf'
+    local(cmd)
+
+    restart_database()
+    drop_database()
+    create_database()
+    load_db_from_dump()
+
+    # swap conf back
+    cmd = 'sudo cp /etc/postgresql/10/main/postgresql.conf.tmp /etc/postgresql/10/main/postgresql.conf'
+    local(cmd)
+    cmd = 'sudo rm /etc/postgresql/10/main/postgresql.conf.tmp'
+    local(cmd)
+
+@task 
+def move_to_default():
+    cmd = 'sudo cp /etc/postgresql/10/main/postgresql.conf.bak /etc/postgresql/10/main/postgresql.conf'
+    local(cmd)
+
 
 def _ready_to_start_controller():
     return (os.path.exists(CONF['oltpbench_log']) and
@@ -266,10 +293,10 @@ def loop():
     upload_result()
 
     # get result
-    # get_result()
+    get_result()
 
     # change config
-    # change_conf()
+    change_conf()
 
     # vacuum_analyze()
 
@@ -282,6 +309,13 @@ def run_loops(max_iter=1):
     for i in range(int(max_iter)):
         LOG.info('The %s-th Loop Starts / Total Loops %s', i + 1, max_iter)
         loop()
-        if i % 7 == 0 and i != 0:
-            vacuum_analyze()
+        
+        if i % 9 == 0 and i != 0:
+            LOG.info('Run for 10 rounds, reload now!')
+            safe_reload()
+            # move_to_default()
+            LOG.info('Reload database Done !')
+
+        # if i % 5 == 0 and i != 0:
+        #     vacuum_analyze()
         LOG.info('The %s-th Loop Ends / Total Loops %s', i + 1, max_iter)
