@@ -50,6 +50,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1201-jdbc41'
+
+    // https://mvnrepository.com/artifact/com.sap.cloud.db.jdbc/ngdbc
+    compile group: 'com.sap.cloud.db.jdbc', name: 'ngdbc', version: '2.3.48'
 }
 
 run {

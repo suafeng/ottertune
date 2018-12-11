@@ -15,6 +15,7 @@ from website.types import DBMSType
 
 from .myrocks import MyRocks56Parser
 from .postgres import Postgres96Parser, PostgresOldParser
+from .hana import Hana20Parser
 
 
 class Parser(object):
@@ -36,7 +37,9 @@ class Parser(object):
                 DBMSCatalog.objects.get(
                     type=DBMSType.POSTGRES, version='9.5').pk: Postgres96Parser('9.5'),
                 DBMSCatalog.objects.get(
-                    type=DBMSType.MYROCKS, version='5.6').pk: MyRocks56Parser()
+                    type=DBMSType.MYROCKS, version='5.6').pk: MyRocks56Parser(),
+                DBMSCatalog.objects.get(
+                    type=DBMSType.SAPHANA, version='2.0').pk: Hana20Parser('2.0')
             }
         try:
             if dbms_id is None:

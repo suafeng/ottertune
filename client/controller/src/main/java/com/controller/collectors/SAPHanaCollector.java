@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,31 +29,52 @@ public class SAPHanaCollector extends DBCollector {
 
   private static final String VERSION_SQL = "SELECT VERSION from M_DATABASE";
 
-  private static final String PARAMETERS_SQL = "Select * from M_INIFILE_CONTENTS";
+  private static final String PARAMETERS_SQL = "Select * from M_INIFILE_CONTENTS where file_name = 'global.ini' or file_name = 'indexserver.ini'";
+
+  // all of them are global knobs
+  private static final String[] SAP_KNOBS = {
+      "sql_executors",
+      "max_concurrency",
+      "default_statement_concurrency_limit",
+      "statement_memory_limit",
+      "log_backup_timeout_s",
+      "savepoint_interval_s",
+      "num_cores",
+      "max_sql_executors",
+      "plan_cache_size" 
+  };
 
   private static final String[] SAP_SYS_VIEW = {
-    "m_host_agent_metrics",
+    // "m_host_agent_metrics",
     "m_caches",
     "m_disk_usage",
     "m_garbage_collection_statistics",
     "m_host_resource_utilization",
-    "m_data_volumes"
+    "m_workload"
+    // "m_data_volumes"
   };
 
   private static final String[] SAP_SYS_LOCAL_VIEW = {"m_table_statistics", "m_rs_indexes"};
   private static final String[] SAP_SYS_VIEW_GLOBAL = {
-    "m_host_agent_metrics",
+    // "m_host_agent_metrics",
+    // "m_caches",
+    // "m_disk_usage",
+    // "m_garbage_collection_statistics",
+    // "m_host_resource_utilization"
+    // "m_data_volumes"
+  };
+  private static final String[] SAP_SYS_VIEW_GLOBAL_KEY = {
+    // "instance_id", "cache_id", "usage_type", "store_type", "host", "volume_id"
+  };
+  private static final String[] SAP_SYS_VIEW_LOCAL_TABLE = {
+    "m_table_statistics",
     "m_caches",
     "m_disk_usage",
     "m_garbage_collection_statistics",
     "m_host_resource_utilization",
-    "m_data_volumes"
+    "m_workload"
   };
-  private static final String[] SAP_SYS_VIEW_GLOBAL_KEY = {
-    "instance_id", "cache_id", "usage_type", "store_type", "host", "volume_id"
-  };
-  private static final String[] SAP_SYS_VIEW_LOCAL_TABLE = {"m_table_statistics"};
-  private static final String[] SAP_SYS_VIEW_LOCAL_TABLE_KEY = {"table_name"};
+  private static final String[] SAP_SYS_VIEW_LOCAL_TABLE_KEY = {"table_name", "cache_id", "usage_type", "store_type", "host", "host"};
   private static final String[] SAP_SYS_VIEW_LOCAL_INDEXES = {"m_rs_indexes"};
   private static final String[] SAP_SYS_VIEW_LOCAL_INDEXES_KEY = {"index_name"};
 
@@ -72,22 +94,15 @@ public class SAPHanaCollector extends DBCollector {
 
       // Collect DBMS parameters
       out = s.executeQuery(PARAMETERS_SQL);
+      List<String> knob_array = Arrays.asList(SAP_KNOBS);
       while (out.next()) {
-        dbParameters.put(
-            "("
-                + out.getString("FILE_NAME")
-                + ","
-                + out.getString("LAYER_NAME")
-                + ","
-                + out.getString("TENANT_NAME")
-                + ","
-                + out.getString("HOST")
-                + ","
-                + out.getString("SECTION")
-                + ","
-                + out.getString("KEY")
-                + ")",
-            out.getString("VALUE"));
+        String key = out.getString("KEY");
+        if (!knob_array.contains(key)) {
+          continue;
+        }
+        String value = out.getString("VALUE");
+        if (value == "") value = "0";
+        dbParameters.put(key, value);
       }
 
       // Collect DBMS internal metrics
@@ -145,7 +160,6 @@ public class SAPHanaCollector extends DBCollector {
       stringer.key(JSON_GLOBAL_KEY);
       JSONObject jobGlobal = new JSONObject();
 
-      JSONObject jobMetric = new JSONObject();
       for (int i = 0; i < SAP_SYS_VIEW_GLOBAL.length; i++) {
         String viewName = SAP_SYS_VIEW_GLOBAL[i];
         String jsonKeyName = SAP_SYS_VIEW_GLOBAL_KEY[i];

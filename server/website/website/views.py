@@ -391,7 +391,10 @@ def handle_result_files(session, files):
     # Load the contents of the controller's summary file
     summary = JSONUtil.loads(files['summary'])
     dbms_type = DBMSType.type(summary['database_type'])
-    dbms_version = summary['database_version']  # TODO: fix parse_version_string
+    if summary['database_type'] == 'saphana':
+        dbms_version = '2.0'
+    else:
+        dbms_version = summary['database_version']  # TODO: fix parse_version_string
     workload_name = summary['workload_name']
     observation_time = summary['observation_time']
     start_time = datetime.fromtimestamp(
