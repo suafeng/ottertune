@@ -39,7 +39,7 @@ class Parser(object):
                 DBMSCatalog.objects.get(
                     type=DBMSType.MYROCKS, version='5.6').pk: MyRocks56Parser(),
                 DBMSCatalog.objects.get(
-                    type=DBMSType.SAPHANA, version='2.0').pk: Hana20Parser('2.0')
+                    ·type=DBMSType.SAPHANA, version='2.0').pk: Hana20Parser('2.0')
             }
         try:
             if dbms_id is None:
